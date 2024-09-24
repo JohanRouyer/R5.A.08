@@ -5,17 +5,17 @@ import org.junit.jupiter.api.*;
 
 public class CalculatorTest {
 
-    private Calculator calc;
-
-    @BeforeEach
-    public void init(){
-        calc = new Calculator();
-    }
-
-    @AfterEach
-    public void teardown() {
-        calc = null;
-    }
+//    private Calculator calc;
+//
+//    @BeforeEach
+//    public void init(){
+//        calc = new Calculator();
+//    }
+//
+//    @AfterEach
+//    public void teardown() {
+//        calc = null;
+//    }
 
     @Test
     void methode_add_devrait_retourner_la_somme_de_deux_entiers(){
@@ -26,7 +26,7 @@ public class CalculatorTest {
         int attendu = 10;
 
         // WITH
-        int resultat = calc.add(a,b);
+        int resultat = Calculator.add(a,b);
 
         // THEN
         assertThat(resultat).isEqualTo(attendu);
@@ -36,13 +36,12 @@ public class CalculatorTest {
     void methode_divide_devrait_retourner_la_division_de_deux_entiers(){
 
         //GIVEN
-        Calculator calc = new Calculator();
         int a = 12;
         int b = 2;
         int attendu = 6;
 
         // WITH
-        int resultat = calc.divide(a,b);
+        int resultat = Calculator.divide(a,b);
 
         // THEN
         assertThat(resultat).isEqualTo(attendu);
