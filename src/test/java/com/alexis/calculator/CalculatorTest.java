@@ -1,15 +1,26 @@
 package com.alexis.calculator;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.*;
 
 public class CalculatorTest {
 
+    private Calculator calc;
+
+    @BeforeEach
+    public void init(){
+        calc = new Calculator();
+    }
+
+    @AfterEach
+    public void teardown() {
+        calc = null;
+    }
 
     @Test
     void methode_add_devrait_retourner_la_somme_de_deux_entiers(){
 
         //GIVEN
-        Calculator calc = new Calculator();
         int a = 5;
         int b = 5;
         int attendu = 10;
