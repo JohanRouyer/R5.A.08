@@ -1,61 +1,48 @@
 package com.johan.calculator;
-
-import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CalculatorTest {
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+public class CalculatorTest {
+
+    private Calculator calc;
+
+    @BeforeEach
+    public void init(){
+        calc = new Calculator();
+    }
+
+    @AfterEach
+    public void teardown() {
+        calc = null;
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0,1,1","1,2,3","-2,2,0","0,0,0","-1,-2,-3"})
+    void methode_add_devrait_retourner_la_somme_de_deux_entiers(int a, int b, int attendu){
+
+        // WITH
+        int resultat = calc.add(a,b);
+
+        // THEN
+        assertThat(resultat).isEqualTo(attendu);
+    }
+
     @Test
-    void additionPositif(){
+    void methode_divide_devrait_retourner_la_division_de_deux_entiers(){
+
         //GIVEN
-        Calculator calculator = new Calculator();
+        int a = 12;
+        int b = 2;
+        int attendu = 6;
 
-        //WHEN
-        int result = calculator.add(1, 2);
+        // WITH
+        int resultat = calc.divide(a,b);
 
-        //THEN
-        assertThat(result).isEqualTo(3);
-    }
-
-    @Test
-    void additionNegatives(){
-        //given
-        Calculator calculator = new Calculator();
-        //WHEN
-        int result = calculator.add(-1, -2);
-
-        //THEN
-        assertThat(result).isEqualTo(-3);
-    }
-
-    @Test
-    void additionzero(){
-        //given
-        Calculator calculator = new Calculator();
-        //WHEN
-        int result = calculator.add(0,0 );
-
-        //THEN
-        assertThat(result).isEqualTo(0);
-    }
-
-    @Test
-    void divisionPositif(){
-        //GIVEN
-        Calculator calculator = new Calculator();
-        //WHEN
-        int result = calculator.divide(4,2);
-        //THEN
-        assertThat(result).isEqualTo(2);
-    }
-
-    @Test
-    void divisionNegative(){
-        //GIVEN
-        Calculator calculator = new Calculator();
-        //WHEN
-        int result = calculator.divide(-4,2);
-        //THEN
-        assertThat(result).isEqualTo(-2);
+        // THEN
+        assertThat(resultat).isEqualTo(attendu);
     }
 
 }
